@@ -8,7 +8,7 @@ public class TokenSystem : MonoBehaviour
     private const int maximumNumberOfTokens = 5; // Max tokens
     private const float numberOfHoursToRegenerateTokens = 0.005f; // 6 mins per token for testing
 
-    private int tokens; // Current token count
+    public  int tokens; // Current token count
 
     public TMP_Text timerDisplay; // UI Text for the countdown timer
     public Image[] tokenSprites; // Array for token circle images
@@ -125,18 +125,18 @@ public class TokenSystem : MonoBehaviour
             //similar to colour changing for active and inactive colour but instead itll be on the child object and spriite swapping
         }
     }
-
     public void SpendTokens()
     {
-        if (tokens > 0)
+        // Check if the player has at least 5 tokens
+        if (tokens >= 5)
         {
-            tokens--;
-            SaveTokens();
-            UpdateUI();
+            tokens -= 5;  // Spend 5 tokens
+            SaveTokens();  // Save the new token count
+            UpdateUI();    // Update the UI to reflect the new token count
         }
         else
         {
-            Debug.Log("Not enough tokens!");
+            Debug.Log("Not enough tokens! You need at least 5 tokens to play.");
         }
     }
 }
