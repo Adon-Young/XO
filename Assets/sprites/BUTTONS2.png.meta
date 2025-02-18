@@ -3,7 +3,7 @@ guid: 907b5807b8fcb894488cc70d10d24a99
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -25,7 +25,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
-  ignoreMasterTextureLimit: 0
+  ignoreMipmapLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -34,7 +34,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -50,7 +50,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -65,6 +65,7 @@ TextureImporter:
   ignorePngGamma: 0
   applyGammaDecoding: 0
   swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -76,6 +77,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -88,6 +90,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
@@ -100,6 +103,46 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: iPhone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -2006,97 +2049,97 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      BUTTONS2_72: 1276431970
-      BUTTONS2_25: -1441497962
-      BUTTONS2_36: -1857973960
-      BUTTONS2_77: 734643095
-      BUTTONS2_39: 1691202226
-      BUTTONS2_70: -1496176690
-      BUTTONS2_78: -1569495614
-      BUTTONS2_44: 512256003
-      BUTTONS2_6: -1296576343
-      BUTTONS2_66: 768231024
-      BUTTONS2_10: -212023422
-      BUTTONS2_31: -880554028
-      BUTTONS2_58: 339045404
-      BUTTONS2_23: 151822974
-      BUTTONS2_7: -734058912
-      BUTTONS2_33: -674174187
-      BUTTONS2_60: 648552159
-      BUTTONS2_28: -2014945275
-      BUTTONS2_73: -892004782
-      BUTTONS2_15: -445640178
-      BUTTONS2_48: -331817346
-      BUTTONS2_20: 641299017
-      BUTTONS2_38: 1986645592
-      BUTTONS2_35: 1707642532
       BUTTONS2_0: 34643030
-      BUTTONS2_27: 873532973
-      BUTTONS2_18: 873895027
-      BUTTONS2_4: 51419403
-      BUTTONS2_16: 855056471
-      BUTTONS2_11: -2093636988
-      BUTTONS2_49: 1332777063
-      BUTTONS2_87: -605546890
-      BUTTONS2_84: 1805006627
-      BUTTONS2_46: -1651824558
-      BUTTONS2_45: 100864261
-      BUTTONS2_40: 1929823866
-      BUTTONS2_51: 1666625300
-      BUTTONS2_26: 1014755781
-      BUTTONS2_9: -904835275
-      BUTTONS2_29: -1112025382
-      BUTTONS2_86: -468180942
-      BUTTONS2_5: 133343469
-      BUTTONS2_89: -910544820
-      BUTTONS2_30: -277448698
-      BUTTONS2_81: 558867288
-      BUTTONS2_85: -327899340
-      BUTTONS2_80: 703341968
-      BUTTONS2_82: -105284238
-      BUTTONS2_47: -835990683
-      BUTTONS2_50: -643192983
-      BUTTONS2_79: 1912708402
-      BUTTONS2_3: 2001021567
-      BUTTONS2_13: -2070042979
-      BUTTONS2_68: 1126527078
-      BUTTONS2_22: -1275522085
-      BUTTONS2_14: 1943693887
-      BUTTONS2_21: -568976924
-      BUTTONS2_69: -1873022934
-      BUTTONS2_12: -921577633
-      BUTTONS2_42: -26253649
-      BUTTONS2_2: -82689391
-      BUTTONS2_41: 1631465895
-      BUTTONS2_76: 196294427
-      BUTTONS2_24: -397492269
-      BUTTONS2_64: -1010653315
-      BUTTONS2_43: 1003700596
-      BUTTONS2_54: -68256316
-      BUTTONS2_83: 779010202
-      BUTTONS2_71: 296237442
-      BUTTONS2_57: 577888031
-      BUTTONS2_34: -1732555882
-      BUTTONS2_67: 435511875
-      BUTTONS2_62: -686056506
-      BUTTONS2_8: 129812712
-      BUTTONS2_55: 1838222704
-      BUTTONS2_17: 588375457
-      BUTTONS2_75: -212347189
-      BUTTONS2_88: 947292694
-      BUTTONS2_56: 40612109
-      BUTTONS2_19: -1186700323
-      BUTTONS2_74: 68144520
-      BUTTONS2_52: 1780817320
-      BUTTONS2_63: -94598986
       BUTTONS2_1: -1515708871
-      BUTTONS2_59: 136556823
-      BUTTONS2_65: -1823111909
-      BUTTONS2_53: 1044880107
-      BUTTONS2_37: -2091735528
+      BUTTONS2_10: -212023422
+      BUTTONS2_11: -2093636988
+      BUTTONS2_12: -921577633
+      BUTTONS2_13: -2070042979
+      BUTTONS2_14: 1943693887
+      BUTTONS2_15: -445640178
+      BUTTONS2_16: 855056471
+      BUTTONS2_17: 588375457
+      BUTTONS2_18: 873895027
+      BUTTONS2_19: -1186700323
+      BUTTONS2_2: -82689391
+      BUTTONS2_20: 641299017
+      BUTTONS2_21: -568976924
+      BUTTONS2_22: -1275522085
+      BUTTONS2_23: 151822974
+      BUTTONS2_24: -397492269
+      BUTTONS2_25: -1441497962
+      BUTTONS2_26: 1014755781
+      BUTTONS2_27: 873532973
+      BUTTONS2_28: -2014945275
+      BUTTONS2_29: -1112025382
+      BUTTONS2_3: 2001021567
+      BUTTONS2_30: -277448698
+      BUTTONS2_31: -880554028
       BUTTONS2_32: -850205694
+      BUTTONS2_33: -674174187
+      BUTTONS2_34: -1732555882
+      BUTTONS2_35: 1707642532
+      BUTTONS2_36: -1857973960
+      BUTTONS2_37: -2091735528
+      BUTTONS2_38: 1986645592
+      BUTTONS2_39: 1691202226
+      BUTTONS2_4: 51419403
+      BUTTONS2_40: 1929823866
+      BUTTONS2_41: 1631465895
+      BUTTONS2_42: -26253649
+      BUTTONS2_43: 1003700596
+      BUTTONS2_44: 512256003
+      BUTTONS2_45: 100864261
+      BUTTONS2_46: -1651824558
+      BUTTONS2_47: -835990683
+      BUTTONS2_48: -331817346
+      BUTTONS2_49: 1332777063
+      BUTTONS2_5: 133343469
+      BUTTONS2_50: -643192983
+      BUTTONS2_51: 1666625300
+      BUTTONS2_52: 1780817320
+      BUTTONS2_53: 1044880107
+      BUTTONS2_54: -68256316
+      BUTTONS2_55: 1838222704
+      BUTTONS2_56: 40612109
+      BUTTONS2_57: 577888031
+      BUTTONS2_58: 339045404
+      BUTTONS2_59: 136556823
+      BUTTONS2_6: -1296576343
+      BUTTONS2_60: 648552159
       BUTTONS2_61: 2038314354
-  spritePackingTag: 
+      BUTTONS2_62: -686056506
+      BUTTONS2_63: -94598986
+      BUTTONS2_64: -1010653315
+      BUTTONS2_65: -1823111909
+      BUTTONS2_66: 768231024
+      BUTTONS2_67: 435511875
+      BUTTONS2_68: 1126527078
+      BUTTONS2_69: -1873022934
+      BUTTONS2_7: -734058912
+      BUTTONS2_70: -1496176690
+      BUTTONS2_71: 296237442
+      BUTTONS2_72: 1276431970
+      BUTTONS2_73: -892004782
+      BUTTONS2_74: 68144520
+      BUTTONS2_75: -212347189
+      BUTTONS2_76: 196294427
+      BUTTONS2_77: 734643095
+      BUTTONS2_78: -1569495614
+      BUTTONS2_79: 1912708402
+      BUTTONS2_8: 129812712
+      BUTTONS2_80: 703341968
+      BUTTONS2_81: 558867288
+      BUTTONS2_82: -105284238
+      BUTTONS2_83: 779010202
+      BUTTONS2_84: 1805006627
+      BUTTONS2_85: -327899340
+      BUTTONS2_86: -468180942
+      BUTTONS2_87: -605546890
+      BUTTONS2_88: 947292694
+      BUTTONS2_89: -910544820
+      BUTTONS2_9: -904835275
+  mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 
