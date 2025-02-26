@@ -24,7 +24,6 @@ public class RouletteButton : MonoBehaviour
         rouletteButton.onClick.AddListener(OnButtonClick);//button click listener
 
 
-
     }
 
 
@@ -36,7 +35,7 @@ public class RouletteButton : MonoBehaviour
             rouletteButton.interactable = true;
             cantSpinText.text = "";
             rouletteButton.GetComponent<Image>().color = canPressColour;
-            SpritePage.SetActive(false);//turn it off in the background
+            
         }
         else
         {
@@ -55,12 +54,9 @@ public class RouletteButton : MonoBehaviour
         {
             // Spend 5 tokens when the button is pressed and player has enough tokens
             tokenSystemReference.SpendTokens();//call the function to spend the 5 tokens and resetting recharge timer
-
-
             rouletteWheelPage.SetActive(true);//settng the roulette wheel page to true
-
-            
             rouletteButton.interactable = false;
+            SpritePage.SetActive(false);//turn it off in the background
         }
     }
 }
