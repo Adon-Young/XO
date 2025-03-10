@@ -63,15 +63,14 @@ public class Roulette : MonoBehaviour
         Debug.Log("UI disabled & ButtonComponent Enabled");
 
         // Ensure the object has at least 3 children
-        if (obj.transform.childCount >= 3)
+        if (obj.transform.childCount >= 2)
         {
             // Get the 3rd child's Image component
-            Transform thirdChild = obj.transform.GetChild(2); // Index 2 = 3rd child
-            Image childUIImage = thirdChild.GetComponent<Image>();
+            Transform thirdChild = obj.transform.GetChild(1); // Index 2 = 3rd child
 
-            if (childUIImage != null && childUIImage.enabled)
+            if (thirdChild != null)
             {
-                childUIImage.enabled = false; // Disable the image of the third child
+                thirdChild.gameObject.SetActive(false);//setting the entire obj to false not jus image component. allowint button pressing
             }
         }
         else
