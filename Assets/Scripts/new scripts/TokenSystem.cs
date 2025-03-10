@@ -8,7 +8,8 @@ public class TokenSystem : MonoBehaviour
     private const int maximumNumberOfTokens = 5; // Max tokens
     private const float numberOfHoursToRegenerateTokens = 0.005f; // 6 mins per token for testing
 
-    public  int tokens; // Current token count
+    public int tokens; // Current token count
+    public DateTime lastTokenTime; // Add this field to store the last token time
 
     public TMP_Text timerDisplay; // UI Text for the countdown timer
     public Image[] tokenSprites; // Array for token circle images
@@ -17,7 +18,7 @@ public class TokenSystem : MonoBehaviour
     private readonly Color inactiveTokenColor = Color.white;
     public Sprite xSprite;
     public Sprite oSprite;
-    
+
 
     void Start()
     {
@@ -26,6 +27,7 @@ public class TokenSystem : MonoBehaviour
         UpdateUI();
 
         //resetting playe prefs for testing, comment out or remove when complete
+
         //PlayerPrefs.DeleteAll();
         //PlayerPrefs.Save();
     }
@@ -38,13 +40,18 @@ public class TokenSystem : MonoBehaviour
     void LoadTokens()
     {
         tokens = PlayerPrefs.GetInt("tokens", 0);
+        string lastTimeStr = PlayerPrefs.GetString("lastTokenTime", "");
+        if (!string.IsNullOrEmpty(lastTimeStr))
+        {
+            lastTokenTime = DateTime.Parse(lastTimeStr); // Load lastTokenTime from PlayerPrefs
+        }
         SaveTokens();
     }
 
     void SaveTokens()
     {
         PlayerPrefs.SetInt("tokens", tokens);
-        PlayerPrefs.SetString("lastTokenTime", DateTime.UtcNow.ToString());
+        PlayerPrefs.SetString("lastTokenTime", lastTokenTime.ToString()); // Save lastTokenTime
         PlayerPrefs.Save();
     }
 
@@ -52,11 +59,7 @@ public class TokenSystem : MonoBehaviour
     {
         if (tokens >= maximumNumberOfTokens) return;
 
-        string lastTimeStr = PlayerPrefs.GetString("lastTokenTime", "");
-        if (string.IsNullOrEmpty(lastTimeStr)) return;
-
-        DateTime lastTime = DateTime.Parse(lastTimeStr);
-        TimeSpan timePassed = DateTime.UtcNow - lastTime;
+        TimeSpan timePassed = DateTime.UtcNow - lastTokenTime;
 
         int tokensToRegen = (int)(timePassed.TotalHours / numberOfHoursToRegenerateTokens);
         if (tokensToRegen > 0)
@@ -66,19 +69,18 @@ public class TokenSystem : MonoBehaviour
             // Calculate leftover time that wasn’t enough for a full token
             double leftoverSeconds = timePassed.TotalSeconds % (numberOfHoursToRegenerateTokens * 3600);//converting hours to seconds *3600
             DateTime newLastTokenTime = DateTime.UtcNow.AddSeconds(-leftoverSeconds); // Subtract leftover
-            //this makes sure to save the used time ie prevents the player from resetting the countdown timer every time they join the game
-            //in theory this should allow the timer to essentially continue regenerating tokens for the player even when not in the game
+            lastTokenTime = newLastTokenTime; // Update lastTokenTime
 
             // Save updated tokens and adjusted last token time
             PlayerPrefs.SetInt("tokens", tokens);
-            PlayerPrefs.SetString("lastTokenTime", newLastTokenTime.ToString());
+            PlayerPrefs.SetString("lastTokenTime", lastTokenTime.ToString());
             PlayerPrefs.Save();
 
             UpdateUI();
         }
     }
 
-    void UpdateCountdownTimer()
+    public void UpdateCountdownTimer()
     {
         if (tokens >= maximumNumberOfTokens)
         {
@@ -86,15 +88,13 @@ public class TokenSystem : MonoBehaviour
             return;
         }
 
-        string lastTimeStr = PlayerPrefs.GetString("lastTokenTime", "");
-        if (string.IsNullOrEmpty(lastTimeStr))
+        if (lastTokenTime == DateTime.MinValue) // Check if lastTokenTime is uninitialized
         {
             timerDisplay.text = "Next token: --:--";
             return;
         }
 
-        DateTime lastTime = DateTime.Parse(lastTimeStr);
-        TimeSpan timeSinceLast = DateTime.UtcNow - lastTime;
+        TimeSpan timeSinceLast = DateTime.UtcNow - lastTokenTime;
         TimeSpan timeUntilNext = TimeSpan.FromHours(numberOfHoursToRegenerateTokens) - timeSinceLast;
 
         if (timeUntilNext.TotalSeconds > 0)

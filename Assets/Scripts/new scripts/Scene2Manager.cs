@@ -1,9 +1,10 @@
 using UnityEngine;
+using System;
 
 public class Scene2Manager : MonoBehaviour
 {
     public SpriteRenderer backgroundImageInScene2;  // Assign in Inspector
-
+    public TokenSystem tokenSystem;
     void Start()
     {
         // Load and apply background color
@@ -20,6 +21,9 @@ public class Scene2Manager : MonoBehaviour
         // Load particle colors into PlayerPrefs so ParticleManagers can use them
         LoadColorFromPrefs("XParticleColour", Color.red);
         LoadColorFromPrefs("OParticleColour", Color.blue);
+
+        LoadTokenData(); // Load the token data when entering Scene 2
+        tokenSystem.UpdateCountdownTimer();
     }
 
     public static Color LoadColorFromPrefs(string key, Color defaultColor)
@@ -36,6 +40,22 @@ public class Scene2Manager : MonoBehaviour
         else
         {
             return defaultColor;
+        }
+    }
+
+
+
+    void LoadTokenData()
+    {
+        // Reload token data from PlayerPrefs, so it's consistent across scenes
+        int tokens = PlayerPrefs.GetInt("tokens", 0);
+        string lastTimeStr = PlayerPrefs.GetString("lastTokenTime", "");
+
+        if (!string.IsNullOrEmpty(lastTimeStr))
+        {
+            DateTime lastTime = DateTime.Parse(lastTimeStr);
+            tokenSystem.tokens = tokens;
+            tokenSystem.lastTokenTime = lastTime; // Assign the loaded last token time
         }
     }
 }
