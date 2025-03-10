@@ -2,15 +2,12 @@ using UnityEngine;
 
 public class Scene2Manager : MonoBehaviour
 {
-    public SpriteRenderer backgroundImageInScene2;  // Drag your SpriteRenderer here in the inspector
+    public SpriteRenderer backgroundImageInScene2;  // Assign in Inspector
 
-    // Start is called before the first frame update
     void Start()
     {
-        // Load the background color from PlayerPrefs
-        Color backgroundColor = LoadColorFromPrefs("BackgroundImage", Color.white);  // Default to white if no color saved
-
-        // Apply the color to the background image in Scene 2
+        // Load and apply background color
+        Color backgroundColor = LoadColorFromPrefs("BackgroundImage", Color.blue);
         if (backgroundImageInScene2 != null)
         {
             backgroundImageInScene2.color = backgroundColor;
@@ -19,10 +16,13 @@ public class Scene2Manager : MonoBehaviour
         {
             Debug.LogError("Background image in Scene 2 not assigned!");
         }
+
+        // Load particle colors into PlayerPrefs so ParticleManagers can use them
+        LoadColorFromPrefs("XParticleColour", Color.red);
+        LoadColorFromPrefs("OParticleColour", Color.blue);
     }
 
-    // Function to load the color from PlayerPrefs
-    private Color LoadColorFromPrefs(string key, Color defaultColor)
+    public static Color LoadColorFromPrefs(string key, Color defaultColor)
     {
         if (PlayerPrefs.HasKey(key + "_R"))
         {
@@ -35,9 +35,10 @@ public class Scene2Manager : MonoBehaviour
         }
         else
         {
-            // If no saved color exists, return the default color
             return defaultColor;
         }
     }
 }
+
+
 

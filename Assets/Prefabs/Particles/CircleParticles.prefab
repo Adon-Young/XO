@@ -4875,6 +4875,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39efe03bb56ca9b448576140004b892e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isXParticle: 0
-  xParticleColor: {r: 1, g: 0, b: 0, a: 1}
-  oParticleColor: {r: 0, g: 0, b: 1, a: 1}
+  colorKey: OParticleColour
