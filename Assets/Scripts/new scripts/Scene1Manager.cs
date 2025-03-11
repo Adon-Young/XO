@@ -2,26 +2,27 @@ using UnityEngine;
 
 public class Scene1Manager : MonoBehaviour
 {
-    public SpriteRenderer backgroundImageInScene2;  // Drag your SpriteRenderer here in the inspector
+    public SpriteRenderer backgroundImageInScene1;  // Drag your SpriteRenderer here in the inspector
 
-    // Start is called before the first frame update
+    // Default background color: RGB (218, 218, 218, 200)
+    private readonly Color defaultBackgroundColor = new Color(218f / 255f, 218f / 255f, 218f / 255f, 200f / 255f);
+
     void Start()
     {
-        // Load the background color from PlayerPrefs
-        Color backgroundColor = LoadColorFromPrefs("BackgroundImage", Color.blue);  // Default to white if no color saved
+        // Load the background color from PlayerPrefs, or use the default color
+        Color backgroundColor = LoadColorFromPrefs("BackgroundImage", defaultBackgroundColor);
 
-        // Apply the color to the background image in Scene 2
-        if (backgroundImageInScene2 != null)
+        // Apply the color to the background image in Scene 1
+        if (backgroundImageInScene1 != null)
         {
-            backgroundImageInScene2.color = backgroundColor;
+            backgroundImageInScene1.color = backgroundColor;
         }
         else
         {
-            Debug.LogError("Background image in Scene 2 not assigned!");
+            Debug.LogError("Background image in Scene 1 not assigned!");
         }
     }
 
-    // Function to load the color from PlayerPrefs
     private Color LoadColorFromPrefs(string key, Color defaultColor)
     {
         if (PlayerPrefs.HasKey(key + "_R"))
@@ -35,7 +36,6 @@ public class Scene1Manager : MonoBehaviour
         }
         else
         {
-            // If no saved color exists, return the default color
             return defaultColor;
         }
     }

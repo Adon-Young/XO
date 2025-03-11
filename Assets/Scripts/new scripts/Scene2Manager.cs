@@ -3,12 +3,18 @@ using System;
 
 public class Scene2Manager : MonoBehaviour
 {
-    public SpriteRenderer backgroundImageInScene2;  // Assign in Inspector
+    public SpriteRenderer backgroundImageInScene2;
     public TokenSystem tokenSystem;
+
+    // Default colors
+    private readonly Color defaultBackgroundColor = new Color(218f / 255f, 218f / 255f, 218f / 255f, 200f / 255f);
+    private readonly Color defaultXParticleColor = new Color(156f / 255f, 156f / 255f, 156f / 255f, 255f / 255f);
+    private readonly Color defaultOParticleColor = new Color(114f / 255f, 114f / 255f, 114f / 255f, 255f / 255f);
+
     void Start()
     {
         // Load and apply background color
-        Color backgroundColor = LoadColorFromPrefs("BackgroundImage", Color.blue);
+        Color backgroundColor = LoadColorFromPrefs("BackgroundImage", defaultBackgroundColor);
         if (backgroundImageInScene2 != null)
         {
             backgroundImageInScene2.color = backgroundColor;
@@ -19,8 +25,8 @@ public class Scene2Manager : MonoBehaviour
         }
 
         // Load particle colors into PlayerPrefs so ParticleManagers can use them
-        LoadColorFromPrefs("XParticleColour", Color.red);
-        LoadColorFromPrefs("OParticleColour", Color.blue);
+        LoadColorFromPrefs("XParticleColour", defaultXParticleColor);
+        LoadColorFromPrefs("OParticleColour", defaultOParticleColor);
 
         LoadTokenData(); // Load the token data when entering Scene 2
         tokenSystem.UpdateCountdownTimer();
@@ -43,8 +49,6 @@ public class Scene2Manager : MonoBehaviour
         }
     }
 
-
-
     void LoadTokenData()
     {
         // Reload token data from PlayerPrefs, so it's consistent across scenes
@@ -59,6 +63,5 @@ public class Scene2Manager : MonoBehaviour
         }
     }
 }
-
 
 
