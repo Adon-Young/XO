@@ -4,7 +4,7 @@ using System;
 public class Scene2Manager : MonoBehaviour
 {
     public SpriteRenderer backgroundImageInScene2;
-    public TokenSystem tokenSystem;
+    
 
     // Default colors
     private readonly Color defaultBackgroundColor = new Color(218f / 255f, 218f / 255f, 218f / 255f, 200f / 255f);
@@ -29,7 +29,7 @@ public class Scene2Manager : MonoBehaviour
         LoadColorFromPrefs("OParticleColour", defaultOParticleColor);
 
         LoadTokenData(); // Load the token data when entering Scene 2
-        tokenSystem.UpdateCountdownTimer();
+        
     }
 
     public static Color LoadColorFromPrefs(string key, Color defaultColor)
@@ -58,8 +58,7 @@ public class Scene2Manager : MonoBehaviour
         if (!string.IsNullOrEmpty(lastTimeStr))
         {
             DateTime lastTime = DateTime.Parse(lastTimeStr);
-            tokenSystem.tokens = tokens;
-            tokenSystem.lastTokenTime = lastTime; // Assign the loaded last token time
+           
         }
     }
 }

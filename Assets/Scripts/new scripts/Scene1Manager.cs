@@ -4,13 +4,29 @@ public class Scene1Manager : MonoBehaviour
 {
     public SpriteRenderer backgroundImageInScene1;  // Drag your SpriteRenderer here in the inspector
 
-    // Default background color: RGB (218, 218, 218, 200)
+    // Default colours
     private readonly Color defaultBackgroundColor = new Color(218f / 255f, 218f / 255f, 218f / 255f, 200f / 255f);
+    private readonly Color defaultOparticleColour = new Color(114f / 255f, 114f / 255f, 114f / 255f, 255f / 255f);
+    private readonly Color defaultXparticleColour = new Color(156f / 255f, 156f / 255f, 156f / 255f, 255f / 255f);
 
     void Start()
     {
-        // Load the background color from PlayerPrefs, or use the default color
+        if (!PlayerPrefs.HasKey("HasInitializedDefaults"))
+        {
+            // First time running the game – set and save default colors
+            SaveDefaultColor("BackgroundImage", defaultBackgroundColor);
+            SaveDefaultColor("OParticleColour", defaultOparticleColour);
+            SaveDefaultColor("XParticleColour", defaultXparticleColour);
+
+            // Mark that defaults have been set
+            PlayerPrefs.SetInt("HasInitializedDefaults", 1);
+            PlayerPrefs.Save();
+        }
+
+        // Load stored colors (whether they are defaults or user-chosen)
         Color backgroundColor = LoadColorFromPrefs("BackgroundImage", defaultBackgroundColor);
+        Color OpartColour = LoadColorFromPrefs("OParticleColour", defaultOparticleColour);
+        Color XpartColour = LoadColorFromPrefs("XParticleColour", defaultXparticleColour);
 
         // Apply the color to the background image in Scene 1
         if (backgroundImageInScene1 != null)
@@ -22,6 +38,16 @@ public class Scene1Manager : MonoBehaviour
             Debug.LogError("Background image in Scene 1 not assigned!");
         }
     }
+
+    // Helper function to save default colors
+    private void SaveDefaultColor(string key, Color color)
+    {
+        PlayerPrefs.SetFloat(key + "_R", color.r);
+        PlayerPrefs.SetFloat(key + "_G", color.g);
+        PlayerPrefs.SetFloat(key + "_B", color.b);
+        PlayerPrefs.SetFloat(key + "_A", color.a);
+    }
+
 
     private Color LoadColorFromPrefs(string key, Color defaultColor)
     {

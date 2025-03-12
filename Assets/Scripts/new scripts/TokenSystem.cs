@@ -41,12 +41,23 @@ public class TokenSystem : MonoBehaviour
     {
         tokens = PlayerPrefs.GetInt("tokens", 0);
         string lastTimeStr = PlayerPrefs.GetString("lastTokenTime", "");
+
         if (!string.IsNullOrEmpty(lastTimeStr))
         {
-            lastTokenTime = DateTime.Parse(lastTimeStr); // Load lastTokenTime from PlayerPrefs
+            if (!DateTime.TryParse(lastTimeStr, out lastTokenTime))
+            {
+                Debug.LogWarning("Invalid lastTokenTime in PlayerPrefs, resetting to current time.");
+                lastTokenTime = DateTime.UtcNow; // Set to current time if invalid
+            }
         }
+        else
+        {
+            lastTokenTime = DateTime.UtcNow; // Set to current time if empty
+        }
+
         SaveTokens();
     }
+
 
     void SaveTokens()
     {
@@ -61,24 +72,29 @@ public class TokenSystem : MonoBehaviour
 
         TimeSpan timePassed = DateTime.UtcNow - lastTokenTime;
 
+        // Prevent negative or absurdly large values
+        if (timePassed.TotalSeconds < 0 || timePassed.TotalDays > 365)
+        {
+            Debug.LogError($"[UpdateTokenRegen] Invalid timePassed: {timePassed}, resetting lastTokenTime.");
+            lastTokenTime = DateTime.UtcNow;  // Reset to current time
+            SaveTokens();
+            return;
+        }
+
         int tokensToRegen = (int)(timePassed.TotalHours / numberOfHoursToRegenerateTokens);
+
+        Debug.Log($"[UpdateTokenRegen] Time Passed: {timePassed}, Tokens to Regen: {tokensToRegen}");
+
         if (tokensToRegen > 0)
         {
             tokens = Mathf.Min(tokens + tokensToRegen, maximumNumberOfTokens);
-
-            // Calculate leftover time that wasn’t enough for a full token
-            double leftoverSeconds = timePassed.TotalSeconds % (numberOfHoursToRegenerateTokens * 3600);//converting hours to seconds *3600
-            DateTime newLastTokenTime = DateTime.UtcNow.AddSeconds(-leftoverSeconds); // Subtract leftover
-            lastTokenTime = newLastTokenTime; // Update lastTokenTime
-
-            // Save updated tokens and adjusted last token time
-            PlayerPrefs.SetInt("tokens", tokens);
-            PlayerPrefs.SetString("lastTokenTime", lastTokenTime.ToString());
-            PlayerPrefs.Save();
-
+            double leftoverSeconds = timePassed.TotalSeconds % (numberOfHoursToRegenerateTokens * 3600);
+            lastTokenTime = DateTime.UtcNow.AddSeconds(-leftoverSeconds);
+            SaveTokens();
             UpdateUI();
         }
     }
+
 
     public void UpdateCountdownTimer()
     {
@@ -88,7 +104,7 @@ public class TokenSystem : MonoBehaviour
             return;
         }
 
-        if (lastTokenTime == DateTime.MinValue) // Check if lastTokenTime is uninitialized
+        if (lastTokenTime.Year < 2000) // Instead of DateTime.MinValue
         {
             timerDisplay.text = "Next token: --:--";
             return;
@@ -107,8 +123,10 @@ public class TokenSystem : MonoBehaviour
         {
             timerDisplay.text = "Token Ready!";
             UpdateTokenRegen(); // Try regenerating
+            UpdateUI();  // <== Force UI update here
         }
     }
+
 
     void UpdateUI()
     {

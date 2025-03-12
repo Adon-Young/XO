@@ -66,7 +66,7 @@ public class Roulette : MonoBehaviour
         if (obj.transform.childCount >= 2)
         {
             // Get the 3rd child's Image component
-            Transform thirdChild = obj.transform.GetChild(1); // Index 2 = 3rd child
+            Transform thirdChild = obj.transform.GetChild(4); // Index 2 = 3rd child
 
             if (thirdChild != null)
             {
