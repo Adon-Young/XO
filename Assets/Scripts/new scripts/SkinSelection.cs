@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,10 +9,14 @@ public class SkinSelection : MonoBehaviour
 
     public SpriteRenderer backgroundImageInScene1;
     private Button thisObjButton;
+    private ButtonColors buttonColorManager; // Reference to ButtonColorManager
 
     private void Start()
     {
         thisObjButton = GetComponent<Button>();
+
+        // Find ButtonColorManager in the scene
+        buttonColorManager = FindObjectOfType<ButtonColors>();
 
         if (thisObjButton != null)
         {
@@ -24,7 +26,7 @@ public class SkinSelection : MonoBehaviour
 
     public void ApplyNewSkins()
     {
-        // Apply this button's specific colors to the scene
+        // Apply the new background color immediately
         if (backgroundImageInScene1)
         {
             backgroundImageInScene1.color = backgroundColour;
@@ -34,6 +36,12 @@ public class SkinSelection : MonoBehaviour
         SaveColours("BackgroundImage", backgroundColour);
         SaveColours("XParticleColour", xparticleColour);
         SaveColours("OParticleColour", oparticleColour);
+
+        // Call ButtonColorManager to update all buttons in the list
+        if (buttonColorManager != null)
+        {
+            buttonColorManager.UpdateButtonColors();
+        }
     }
 
     private void SaveColours(string key, Color color)
@@ -45,3 +53,4 @@ public class SkinSelection : MonoBehaviour
         PlayerPrefs.Save();
     }
 }
+
