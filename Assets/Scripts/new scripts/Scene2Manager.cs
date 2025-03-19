@@ -4,6 +4,7 @@ using System;
 public class Scene2Manager : MonoBehaviour
 {
     public SpriteRenderer backgroundImageInScene2;
+    public SpriteRenderer[] squareButtons;
     
 
     // Default colors
@@ -18,6 +19,15 @@ public class Scene2Manager : MonoBehaviour
         if (backgroundImageInScene2 != null)
         {
             backgroundImageInScene2.color = backgroundColor;
+            foreach(SpriteRenderer sprite in squareButtons)
+            {
+                sprite.color = backgroundColor;
+            }
+            
+
+            
+            
+
         }
         else
         {

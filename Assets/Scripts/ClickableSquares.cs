@@ -6,8 +6,8 @@ public class ClickableSquares : MonoBehaviour
 {
     //public intiger called square number
     public int squareNumber = 1;
-    
-    
+  
+  
 
     private void OnMouseDown()
     {
