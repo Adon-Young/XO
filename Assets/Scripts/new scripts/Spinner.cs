@@ -1,84 +1,47 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Spinner : MonoBehaviour, IDragHandler, IPointerDownHandler
+public class Spinner : MonoBehaviour
 {
-    public float rotationSpeed = 0.1f;  // Base sensitivity to drag
+    public float rotationSpeedIncrement = 5f; // Speed added per button press
+    public float maxSpeed = 20f; // Maximum spin speed
+    public float decelerationRate = 0.98f; // Smoother gradual slowdown
+    public Button spinButton; // Button that triggers the spin
     public List<Button> skinButtons;
     public float defaultRadius = 300f;
     public float expandedRadius = 400f;
-    public float deceleration = 0.95f;  // Friction/slowdown factor
-    public float minimumSpeed = 0.1f;   // Minimum speed before stopping
-    public float maxSpeed = 20f;        // Max speed cap for the spinner
-    private float currentRotationSpeed = 0f;  // Current rotational velocity
-    private Vector2 lastDragPosition;
 
-    private HashSet<Button> activeButtons = new HashSet<Button>(); // Tracks buttons inside the Hopper
+    private float currentRotationSpeed = 0f;
+    private HashSet<Button> activeButtons = new HashSet<Button>();
 
     void Start()
     {
-        ArrangeButtonsInCircle();  // Arrange buttons initially in a circle
+        ArrangeButtonsInCircle(); // Arrange buttons initially
+        spinButton.onClick.AddListener(Spin); // Attach button click event
     }
-
 
     void Update()
     {
-        // Apply rotation momentum and decelerate
-        if (currentRotationSpeed != 0)
+        if (Mathf.Abs(currentRotationSpeed) > 0.01f) // Avoid micro rotations
         {
             transform.Rotate(0, 0, currentRotationSpeed * Time.deltaTime);
-            currentRotationSpeed *= deceleration;
+            currentRotationSpeed *= decelerationRate; // Apply smooth deceleration
 
-            if (Mathf.Abs(currentRotationSpeed) > maxSpeed)
+            if (Mathf.Abs(currentRotationSpeed) < 0.1f)
             {
-                currentRotationSpeed = Mathf.Sign(currentRotationSpeed) * maxSpeed;
-            }
-
-            if (Mathf.Abs(currentRotationSpeed) < minimumSpeed)
-            {
-                currentRotationSpeed = 0f;
+                currentRotationSpeed = 0f; // Stop when speed is negligible
             }
         }
 
-        // Update button positions based on whether they're inside the Hopper
-        foreach (Button button in skinButtons)
-        {
-            // Keep button upright
-            button.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-
-            // Change radius if it's inside the Hopper
-            float radius = activeButtons.Contains(button) ? expandedRadius : defaultRadius;
-            Vector3 direction = button.transform.localPosition.normalized;
-            button.transform.localPosition = direction * radius;
-        }
+        UpdateButtonPositions();
     }
 
-    public void OnDrag(PointerEventData eventData)
+    public void Spin()
     {
-        // Track the speed of the drag and calculate velocity
-        Vector2 dragDelta = eventData.position - lastDragPosition;
-
-        // Calculate speed based on the distance dragged
-        currentRotationSpeed = dragDelta.x * rotationSpeed;
-
-        // Cap the rotation speed to maxSpeed
-        if (Mathf.Abs(currentRotationSpeed) > maxSpeed)
-        {
-            currentRotationSpeed = Mathf.Sign(currentRotationSpeed) * maxSpeed;
-        }
-
-        lastDragPosition = eventData.position;  // Update last drag position
+        currentRotationSpeed += rotationSpeedIncrement; // Increase speed
+        currentRotationSpeed = Mathf.Clamp(currentRotationSpeed, 0, maxSpeed); // Cap at max speed
     }
-
-    // Allow tap to stop spinning immediately
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        currentRotationSpeed = 0f;
-    }
-
-
 
     void ArrangeButtonsInCircle()
     {
@@ -95,17 +58,24 @@ public class Spinner : MonoBehaviour, IDragHandler, IPointerDownHandler
         }
     }
 
+    void UpdateButtonPositions()
+    {
+        foreach (Button button in skinButtons)
+        {
+            button.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+            float radius = activeButtons.Contains(button) ? expandedRadius : defaultRadius;
+            Vector3 direction = button.transform.localPosition.normalized;
+            button.transform.localPosition = direction * radius;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         Button button = other.GetComponent<Button>();
         if (button != null && skinButtons.Contains(button))
         {
-            activeButtons.Add(button);  // Mark button as inside the Hopper
-            Debug.Log(button.name + " entered the Hopper!");  // Debug log
-        }
-        else
-        {
-            Debug.Log("Collider entered, but it's not a button or it's not in the skinButtons list.");
+            activeButtons.Add(button);
+            Debug.Log(button.name + " entered the Hopper!");
         }
     }
 
@@ -114,14 +84,8 @@ public class Spinner : MonoBehaviour, IDragHandler, IPointerDownHandler
         Button button = other.GetComponent<Button>();
         if (button != null && skinButtons.Contains(button))
         {
-            activeButtons.Remove(button);  // Remove from active buttons
-            Debug.Log(button.name + " exited the Hopper!");  // Debug log
-        }
-        else
-        {
-            Debug.Log("Collider exited, but it's not a button or it's not in the skinButtons list.");
+            activeButtons.Remove(button);
+            Debug.Log(button.name + " exited the Hopper!");
         }
     }
-
 }
-
