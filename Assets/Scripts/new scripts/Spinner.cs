@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class Spinner : MonoBehaviour
 {
-    public float rotationSpeedIncrement = 5f; // Speed added per button press
-    public float maxSpeed = 20f; // Maximum spin speed
+    public float rotationSpeedIncrement = 250f; // Speed added per button press
+    public float maxSpeed = 800f; // Maximum spin speed
     public float decelerationRate = 0.98f; // Smoother gradual slowdown
     public Button spinButton; // Button that triggers the spin
     public List<Button> skinButtons;
@@ -60,10 +60,25 @@ public class Spinner : MonoBehaviour
 
     void UpdateButtonPositions()
     {
+        Button lowestButton = null;
+        float lowestY = float.MaxValue;
+
+        // Find the button with the lowest screen Y position
+        foreach (Button button in skinButtons)
+        {
+            Vector3 screenPos = Camera.main.WorldToScreenPoint(button.transform.position);
+            if (screenPos.y < lowestY)
+            {
+                lowestY = screenPos.y;
+                lowestButton = button;
+            }
+        }
+
+        // Update button positions
         foreach (Button button in skinButtons)
         {
             button.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
-            float radius = activeButtons.Contains(button) ? expandedRadius : defaultRadius;
+            float radius = (button == lowestButton) ? expandedRadius : defaultRadius;
             Vector3 direction = button.transform.localPosition.normalized;
             button.transform.localPosition = direction * radius;
         }

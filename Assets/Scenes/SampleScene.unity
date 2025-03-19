@@ -3288,6 +3288,7 @@ MonoBehaviour:
   - {fileID: 1648455566}
   - {fileID: 756667766}
   - {fileID: 1252752190}
+  - {fileID: 402731101}
 --- !u!1 &396662095
 GameObject:
   m_ObjectHideFlags: 0
@@ -3375,7 +3376,6 @@ GameObject:
   - component: {fileID: 402731103}
   - component: {fileID: 402731102}
   - component: {fileID: 402731101}
-  - component: {fileID: 402731100}
   m_Layer: 5
   m_Name: SpinButton
   m_TagString: Untagged
@@ -3403,22 +3403,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -192}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &402731100
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 402731098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 157c15b7b8c1e0344931c0af4aa0d27b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rouletteButton: {fileID: 402731101}
-  rouletteWheelPage: {fileID: 1755202071}
-  cantSpinText: {fileID: 0}
-  SpritePage: {fileID: 1086170149}
 --- !u!114 &402731101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3463,18 +3447,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 365829533}
-        m_TargetAssemblyTypeName: Roulette, Assembly-CSharp
-        m_MethodName: PickASkinButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 316487622}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
@@ -3696,7 +3668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &472428628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16829,8 +16801,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f1efe63e3573b41afcbf60251148a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeedIncrement: 5
-  maxSpeed: 100
+  rotationSpeedIncrement: 200
+  maxSpeed: 600
   decelerationRate: 0.98
   spinButton: {fileID: 402731101}
   skinButtons:
