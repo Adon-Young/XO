@@ -5,6 +5,7 @@ public class Scene2Manager : MonoBehaviour
 {
     public SpriteRenderer backgroundImageInScene2;
     public SpriteRenderer[] squareButtons;
+    public SpriteRenderer[] backgroundImages;
     
 
     // Default colors
@@ -16,18 +17,23 @@ public class Scene2Manager : MonoBehaviour
     {
         // Load and apply background color
         Color backgroundColor = LoadColorFromPrefs("BackgroundImage", defaultBackgroundColor);
+        Color squareBackgroundColor = LoadColorFromPrefs("XParticleColour", defaultXParticleColor);
+        Color boardBackgroundColor = LoadColorFromPrefs("OParticleColour", defaultOParticleColor);
         if (backgroundImageInScene2 != null)
         {
             backgroundImageInScene2.color = backgroundColor;
-            foreach(SpriteRenderer sprite in squareButtons)
+
+
+
+            foreach (SpriteRenderer sprite in squareButtons)
             {
-                sprite.color = backgroundColor;
+                sprite.color = squareBackgroundColor;
             }
-            
-
-            
-            
-
+            foreach (SpriteRenderer sprite in backgroundImages)
+            {
+                sprite.color = boardBackgroundColor;
+            }
+           
         }
         else
         {
