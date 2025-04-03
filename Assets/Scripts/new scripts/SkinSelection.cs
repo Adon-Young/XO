@@ -10,6 +10,7 @@ public class SkinSelection : MonoBehaviour
     public SpriteRenderer backgroundImageInScene1;
     private Button thisObjButton;
     private ButtonColors buttonColorManager; // Reference to ButtonColorManager
+    public Image[] Blockers;
 
     private void Start()
     {
@@ -30,6 +31,12 @@ public class SkinSelection : MonoBehaviour
         if (backgroundImageInScene1)
         {
             backgroundImageInScene1.color = backgroundColour;
+          
+            foreach (Image blocker in Blockers)
+            {
+                blocker.color = backgroundColour;
+            }
+
         }
 
         // Save these specific colors to PlayerPrefs

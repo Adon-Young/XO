@@ -6,7 +6,7 @@ using TMPro;
 public class TokenSystem : MonoBehaviour
 {
     private const int maximumNumberOfTokens = 5; // Max tokens
-    private const float numberOfHoursToRegenerateTokens = 0.005f; // 6 mins per token for testing
+    private const float numberOfHoursToRegenerateTokens = 24.0f; 
 
     public int tokens; // Current token count
     public DateTime lastTokenTime; // Add this field to store the last token time
@@ -115,17 +115,29 @@ public class TokenSystem : MonoBehaviour
 
         if (timeUntilNext.TotalSeconds > 0)
         {
-            int minutes = Mathf.FloorToInt((float)timeUntilNext.TotalMinutes);
-            int seconds = Mathf.FloorToInt((float)timeUntilNext.TotalSeconds % 60);
-            timerDisplay.text = $"Next token in: {minutes:D2}:{seconds:D2}";
+            // If there's at least an hour left, show hours and minutes
+            if (timeUntilNext.TotalHours >= 1.0)
+            {
+                int hours = Mathf.FloorToInt((float)timeUntilNext.TotalHours);
+                int minutes = Mathf.FloorToInt((float)(timeUntilNext.TotalMinutes - hours * 60));
+                timerDisplay.text = $"Next token in: {hours:D2}:{minutes:D2}";
+            }
+            // If less than an hour left, show minutes and seconds
+            else
+            {
+                int minutes = Mathf.FloorToInt((float)timeUntilNext.TotalMinutes);
+                int seconds = Mathf.FloorToInt((float)(timeUntilNext.TotalSeconds - minutes * 60));
+                timerDisplay.text = $"Next token in: {minutes:D2}:{seconds:D2}";
+            }
         }
         else
         {
             timerDisplay.text = "Token Ready!";
             UpdateTokenRegen(); // Try regenerating
-            UpdateUI();  // <== Force UI update here
+            UpdateUI();         // Force UI update here
         }
     }
+
 
 
     void UpdateUI()

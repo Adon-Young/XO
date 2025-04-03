@@ -1,11 +1,13 @@
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Scene2Manager : MonoBehaviour
 {
     public SpriteRenderer backgroundImageInScene2;
     public SpriteRenderer[] squareButtons;
-    public SpriteRenderer[] backgroundImages;
+    public SpriteRenderer boardSprite;
+    public Image[] Blockers;
     
 
     // Default colors
@@ -22,17 +24,20 @@ public class Scene2Manager : MonoBehaviour
         if (backgroundImageInScene2 != null)
         {
             backgroundImageInScene2.color = backgroundColor;
-
+            boardSprite.color = boardBackgroundColor;
 
 
             foreach (SpriteRenderer sprite in squareButtons)
             {
                 sprite.color = squareBackgroundColor;
+
             }
-            foreach (SpriteRenderer sprite in backgroundImages)
+
+            foreach (Image blocker in Blockers)
             {
-                sprite.color = boardBackgroundColor;
+                blocker.color = backgroundColor;
             }
+        
            
         }
         else

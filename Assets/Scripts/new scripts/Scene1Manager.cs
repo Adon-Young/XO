@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Scene1Manager : MonoBehaviour
 {
     public SpriteRenderer backgroundImageInScene1;  // Drag your SpriteRenderer here in the inspector
-
+    public Image[] Blockers;
     // Default colours
     private readonly Color defaultBackgroundColor = new Color(218f / 255f, 218f / 255f, 218f / 255f, 200f / 255f);
     private readonly Color defaultOparticleColour = new Color(114f / 255f, 114f / 255f, 114f / 255f, 255f / 255f);
@@ -32,6 +33,13 @@ public class Scene1Manager : MonoBehaviour
         if (backgroundImageInScene1 != null)
         {
             backgroundImageInScene1.color = backgroundColor;
+
+            foreach (Image blocker in Blockers)
+            {
+                blocker.color = backgroundColor;
+            }
+
+
         }
         else
         {

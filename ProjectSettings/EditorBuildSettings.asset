@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/PVAI.unity
     guid: 9907a27d455218049880609665c2750e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/New PVAI.unity
     guid: 869c7684134ddfa439a49b621b5ef80c
   m_configObjects: {}

@@ -25,12 +25,25 @@ public class Roulette : MonoBehaviour
 
         if (chosenItem != null)
         {
+            // Check if the item is already unlocked
+            if (PlayerPrefs.GetInt("Unlocked_" + chosenItem.name, 0) == 1)
+            {
+                HandleDuplicatePick(chosenItem);
+                return; // Stop further execution to prevent re-unlocking
+            }
+
             DisableUIImageIfNeeded(chosenItem);
 
             // Save unlocked state
             PlayerPrefs.SetInt("Unlocked_" + chosenItem.name, 1);
             PlayerPrefs.Save();
+            Debug.LogWarning("Skin Unlocked: " + chosenItem.name + " is now unlocked!");
         }
+    }
+
+    void HandleDuplicatePick(GameObject obj)
+    {
+        Debug.LogWarning("Duplicate Pick: " + obj.name + " has already been unlocked!");
     }
 
     GameObject PickRandomLootItem()
