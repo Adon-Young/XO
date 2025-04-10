@@ -3392,7 +3392,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &472428628
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16570,7 +16570,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1755202072
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16681,11 +16681,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00f1efe63e3573b41afcbf60251148a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMinBound: 3500
-  xMaxBound: 2800
+  xMinBound: 3753
+  xMaxBound: 2663
   yMinBound: 7500
-  yMaxBound: 9500
-  stopSpeed: 50
+  yMaxBound: 9631
+  stopSpeed: 100
   stopDelay: 1.5
   defaultRadius: 300
   expandedRadius: 400
