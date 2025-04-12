@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class Scene1Manager : MonoBehaviour
 {
-    public SpriteRenderer backgroundImageInScene1;  // Drag your SpriteRenderer here in the inspector
+    public SpriteRenderer backgroundImageInScene1; 
     public Image[] Blockers;
     // Default colours
     private readonly Color defaultBackgroundColor = new Color(218f / 255f, 218f / 255f, 218f / 255f, 200f / 255f);

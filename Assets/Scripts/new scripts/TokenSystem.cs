@@ -6,7 +6,7 @@ using TMPro;
 public class TokenSystem : MonoBehaviour
 {
     private const int maximumNumberOfTokens = 5; // Max tokens
-    private const float numberOfHoursToRegenerateTokens = 24.0f; 
+    private const float numberOfHoursToRegenerateTokens = 24.0f; //revert to 24.0 -> 24 hour clock
 
     public int tokens; // Current token count
     public DateTime lastTokenTime; // Add this field to store the last token time
