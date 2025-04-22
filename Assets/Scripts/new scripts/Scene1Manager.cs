@@ -14,7 +14,7 @@ public class Scene1Manager : MonoBehaviour
     {
         if (!PlayerPrefs.HasKey("HasInitializedDefaults"))
         {
-            // First time running the game – set and save default colors
+            // First time running the game, set and save default colors
             SaveDefaultColor("BackgroundImage", defaultBackgroundColor);
             SaveDefaultColor("OParticleColour", defaultOparticleColour);
             SaveDefaultColor("XParticleColour", defaultXparticleColour);
@@ -24,7 +24,7 @@ public class Scene1Manager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        // Load stored colors (whether they are defaults or user-chosen)
+        // Load stored colors (whether they are defaults or chosen by the player)
         Color backgroundColor = LoadColorFromPrefs("BackgroundImage", defaultBackgroundColor);
         Color OpartColour = LoadColorFromPrefs("OParticleColour", defaultOparticleColour);
         Color XpartColour = LoadColorFromPrefs("XParticleColour", defaultXparticleColour);

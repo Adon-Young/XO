@@ -7,6 +7,7 @@ public class TokenSystem : MonoBehaviour
 {
     private const int maximumNumberOfTokens = 5; // Max tokens
     private const float numberOfHoursToRegenerateTokens = 24.0f; //revert to 24.0 -> 24 hour clock
+    //if you want to test it set it to something like 0.0167 for around about 1 minute countdowns so should only be about 5 minutes to collect all 5 tokens for texting the roulette wheel
 
     public int tokens; // Current token count
     public DateTime lastTokenTime; // Add this field to store the last token time
@@ -26,8 +27,12 @@ public class TokenSystem : MonoBehaviour
         UpdateTokenRegen();
         UpdateUI();
 
-        //resetting playe prefs for testing, comment out or remove when complete
 
+
+        //Dont touch unless resetting
+        //setps to reset: 1 - uncomment the 2 lines,2-pause and run program, 3- unpasue and pause again- 4 save and recomment the 2 lines.
+        //then system should reset fo first time use
+        //resetting playe prefs for testing, comment out or remove when complete
         //PlayerPrefs.DeleteAll();
         //PlayerPrefs.Save();
     }
@@ -134,7 +139,7 @@ public class TokenSystem : MonoBehaviour
         {
             timerDisplay.text = "Token Ready!";
             UpdateTokenRegen(); // Try regenerating
-            UpdateUI();         // Force UI update here
+            UpdateUI(); // Force UI update here
         }
     }
 

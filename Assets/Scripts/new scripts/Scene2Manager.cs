@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Scene2Manager : MonoBehaviour
 {
+    //similar to scene1Manager assigning the colours
     public SpriteRenderer backgroundImageInScene2;
     public SpriteRenderer[] squareButtons;
     public SpriteRenderer boardSprite;
@@ -73,7 +74,7 @@ public class Scene2Manager : MonoBehaviour
     void LoadTokenData()
     {
         // Reload token data from PlayerPrefs, so it's consistent across scenes
-        int tokens = PlayerPrefs.GetInt("tokens", 0);
+        int tokens = PlayerPrefs.GetInt("tokens", 0);//this is so when the player leaves the main menu (similar to leaving the game) the countdown for tokens continues to count while they are away
         string lastTimeStr = PlayerPrefs.GetString("lastTokenTime", "");
 
         if (!string.IsNullOrEmpty(lastTimeStr))

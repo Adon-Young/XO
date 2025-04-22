@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ButtonColors : MonoBehaviour
 {
-    public Button[] buttonColorList; // Manually populated list of buttons to update
+    public Button[] buttonColorList; // list of buttons to update
 
     private void Start()
     {

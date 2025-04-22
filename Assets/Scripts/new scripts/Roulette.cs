@@ -72,7 +72,7 @@ public class Roulette : MonoBehaviour
         return null;
     }
 
-    void DisableUIImageIfNeeded(GameObject obj)
+    void DisableUIImageIfNeeded(GameObject obj)//if already selected does not remove lock ui as player already unlocked that cosmetic-upgrades can be done here to display to the player
     {
         Debug.Log("UI disabled & ButtonComponent Enabled");
 
@@ -97,7 +97,7 @@ public class Roulette : MonoBehaviour
         }
     }
 
-    private void LoadUnlockedSkins()
+    private void LoadUnlockedSkins()//make sure to keep the unlocked skins unlocked when players return to the page
     {
         foreach (var lootItem in lootItemList)
         {

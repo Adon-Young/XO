@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ParticleManager : MonoBehaviour
 {
-    public string colorKey; // Set this in Inspector: "XParticleColour" or "OParticleColour"
+    public string colorKey; // "XParticleColour" or "OParticleColour"
     private ParticleSystem particleSystem;
 
     void Start()
